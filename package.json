@@ -36,7 +36,9 @@
     "win-deploy": "aws cloudformation deploy --template-file packaged-sam.yaml --stack-name %npm_package_config_cloudFormationStackName% --capabilities CAPABILITY_IAM --region %npm_package_config_region%",
     "win-package-deploy": "npm run win-package && npm run win-deploy",
     "win-delete-stack": "aws cloudformation delete-stack --stack-name %npm_package_config_cloudFormationStackName% --region %npm_package_config_region%",
-    "win-setup": "npm install && (aws s3api get-bucket-location --bucket %npm_package_config_s3BucketName% --region %npm_package_config_region% || npm run win-create-bucket) && npm run win-package-deploy"
+    "win-setup": "npm install && (aws s3api get-bucket-location --bucket %npm_package_config_s3BucketName% --region %npm_package_config_region% || npm run win-create-bucket) && npm run win-package-deploy",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.0",
@@ -60,7 +62,7 @@
     "inversify-binding-decorators": "^3.0.0",
     "inversify-logger-middleware": "^3.0.0",
     "inversify-restify-utils": "^3.2.0",
-    "jsonwebtoken": "^7.4.1",
+    "jsonwebtoken": "^8.0.0",
     "mongoose": "^4.10.1",
     "mongoose-type-email": "^1.0.5",
     "mongoose-unique-validator": "^1.0.5",
@@ -73,7 +75,9 @@
     "reflect-metadata": "^0.1.10",
     "restify": "^4.3.0",
     "serverless-dynamodb-local": "^0.2.22",
-    "uuid": "^3.0.1"
+    "uuid": "^3.0.1",
+    "snyk": "^1.83.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "snyk": true
 }
